@@ -1,9 +1,12 @@
 package com.yupi.springbootinit.model.dto.interfaceInfo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 /**
  * 创建请求
@@ -11,22 +14,40 @@ import java.util.List;
  * @author Runlei Tian
  */
 @Data
-public class PostAddRequest implements Serializable {
+public class InterfaceInfoAddRequest implements Serializable {
 
     /**
-     * 标题
+     * 接口名称
      */
-    private String title;
+    private String name;
 
     /**
-     * 内容
+     * 接口描述
      */
-    private String content;
+    private String description;
 
     /**
-     * 标签列表
+     * 接口地址
      */
-    private List<String> tags;
+    private String url;
+
+    /**
+     * 请求头
+     */
+    private String requestHeader;
+
+    /**
+     * 响应头
+     */
+    private String responseHeader;
+
+
+    /**
+     * 请求类型
+     */
+    private String method;
+
+
 
     private static final long serialVersionUID = 1L;
 }

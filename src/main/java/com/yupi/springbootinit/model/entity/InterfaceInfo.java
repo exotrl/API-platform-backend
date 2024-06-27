@@ -1,36 +1,23 @@
-package com.yupi.springbootinit.model.dto.interfaceInfo;
+package com.yupi.springbootinit.model.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.yupi.springbootinit.common.PageRequest;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import lombok.Data;
 
 /**
- * 查询请求
- *
- * @author Runlei Tian
+ * 接口信息表
+ * @TableName interface_info
  */
-@EqualsAndHashCode(callSuper = true)
+@TableName(value ="interface_info")
 @Data
-public class InterfaceInfoQueryRequest extends PageRequest implements Serializable {
-
+public class InterfaceInfo implements Serializable {
     /**
      * 主键
      */
-
+    @TableId(type = IdType.AUTO)
     private Long id;
-
-    /**
-     * 搜索词
-     */
-    private String searchText;
-
 
     /**
      * 接口名称
@@ -72,7 +59,22 @@ public class InterfaceInfoQueryRequest extends PageRequest implements Serializab
      */
     private Long userId;
 
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
+    /**
+     * 是否删除(0-未删除   1-已删除)
+     */
+    @TableLogic
+    private Integer isDelete;
+
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

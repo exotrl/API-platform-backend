@@ -3,7 +3,7 @@
 # @from <a href="https://yupi.icu">编程导航知识星球</a>
 
 -- 创建库
-create database if not exists my_db;
+create database if not exists api-platform;
 
 -- 切换库
 use my_db;
@@ -30,8 +30,8 @@ create table if not exists user
 create table if not exists post
 (
     id         bigint auto_increment comment 'id' primary key,
-    title      varchar(512)                       null comment '标题',
-    content    text                               null comment '内容',
+    `name`       varchar(256)                     not null comment '名称',
+    description  varchar(256)                      not null comment '描述',
     tags       varchar(1024)                      null comment '标签列表（json 数组）',
     thumbNum   int      default 0                 not null comment '点赞数',
     favourNum  int      default 0                 not null comment '收藏数',

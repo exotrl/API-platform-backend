@@ -1,12 +1,17 @@
 package com.yupi.springbootinit.model.vo;
 
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.yupi.springbootinit.model.entity.InterfaceInfo;
 import com.yupi.springbootinit.model.entity.Post;
+import lombok.Data;
+import org.springframework.beans.BeanUtils;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 /**
  * 帖子视图
@@ -14,35 +19,51 @@ import org.springframework.beans.BeanUtils;
  * @author Runlei Tian
  */
 @Data
-public class PostVO implements Serializable {
+public class InterfaceInfoVO implements Serializable {
 
     /**
-     * id
+     * 主键
      */
+
     private Long id;
 
     /**
-     * 标题
+     * 接口名称
      */
-    private String title;
+    private String name;
 
     /**
-     * 内容
+     * 接口描述
      */
-    private String content;
+    private String description;
 
     /**
-     * 点赞数
+     * 接口地址
      */
-    private Integer thumbNum;
+    private String url;
 
     /**
-     * 收藏数
+     * 请求头
      */
-    private Integer favourNum;
+    private String requestHeader;
 
     /**
-     * 创建用户 id
+     * 响应头
+     */
+    private String responseHeader;
+
+    /**
+     * 接口状态（0-关闭  1-打开）
+     */
+    private Integer status;
+
+    /**
+     * 请求类型
+     */
+    private String method;
+
+    /**
+     * 创建人id
      */
     private Long userId;
 
@@ -57,55 +78,38 @@ public class PostVO implements Serializable {
     private Date updateTime;
 
     /**
-     * 标签列表
+     * 是否删除(0-未删除   1-已删除)
      */
-    private List<String> tagList;
 
-    /**
-     * 创建人信息
-     */
-    private UserVO user;
-
-    /**
-     * 是否已点赞
-     */
-    private Boolean hasThumb;
-
-    /**
-     * 是否已收藏
-     */
-    private Boolean hasFavour;
+    private Integer isDelete;
 
     /**
      * 包装类转对象
      *
-     * @param postVO
+     * @param interfaceInfoVO
      * @return
      */
-    public static Post voToObj(PostVO postVO) {
-        if (postVO == null) {
+    public static InterfaceInfo voToObj(InterfaceInfoVO interfaceInfoVO) {
+        if (interfaceInfoVO == null) {
             return null;
         }
-        Post post = new Post();
-        BeanUtils.copyProperties(postVO, post);
-        List<String> tagList = postVO.getTagList();
-        post.setTags(JSONUtil.toJsonStr(tagList));
-        return post;
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        BeanUtils.copyProperties(interfaceInfoVO, interfaceInfo);
+        return interfaceInfo;
     }
 
     /**
      * 对象转包装类
      *
-     * @param post
+     * @param interfaceInfo
      * @return
      */
-    public static PostVO objToVo(Post post) {
-        if (post == null) {
+    public static InterfaceInfoVO objToVo(InterfaceInfo interfaceInfo) {
+        if (interfaceInfo == null) {
             return null;
         }
-        PostVO postVO = new PostVO();
-        BeanUtils.copyProperties(post, postVO);
-        postVO.setTagList(JSONUtil.toList(post.getTags(), String.class));
-        return postVO;
+        InterfaceInfoVO interfaceInfoVO = new InterfaceInfoVO();
+        BeanUtils.copyProperties(interfaceInfo, interfaceInfoVO);
+        return interfaceInfoVO;
     }
 }
