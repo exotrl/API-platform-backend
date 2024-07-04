@@ -2,16 +2,14 @@ package com.yupi.springbootinit.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.gson.Gson;
 import com.trl.apiinterfaceclientsdk.client.InterfaceClient;
 import com.yupi.springbootinit.annotation.AuthCheck;
 import com.yupi.springbootinit.common.*;
 import com.yupi.springbootinit.constant.UserConstant;
 import com.yupi.springbootinit.exception.BusinessException;
 import com.yupi.springbootinit.exception.ThrowUtils;
-import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoAddRequest;
-import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoEditRequest;
-import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
-import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoUpdateRequest;
+import com.yupi.springbootinit.model.dto.interfaceInfo.*;
 import com.yupi.springbootinit.model.entity.InterfaceInfo;
 import com.yupi.springbootinit.model.entity.User;
 import com.yupi.springbootinit.model.enums.InterfaceInfoStatusEnum;
@@ -305,6 +303,40 @@ public class InterfaceInfoController {
         interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
         boolean result = InterfaceInfoService.updateById(interfaceInfo);
         return ResultUtils.success(result);
+
+    }
+
+    /**
+     * 下线接口
+     *
+     * @param idRequest
+     * @return
+     */
+    @PostMapping("/invoke")
+    public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest, HttpServletRequest request) {
+        //参数校验
+        if(interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        //判断当前接口存在并且不是关闭状态
+        Long id = interfaceInfoInvokeRequest.getId();
+        InterfaceInfo oldInterfaceInfo = InterfaceInfoService.getById(id);
+        ThrowUtils.throwIf(oldInterfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
+
+        if(oldInterfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口已关闭");
+        }
+
+        //调用接口
+        String userRequestParams = interfaceInfoInvokeRequest.getUserRequestParams();
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        InterfaceClient tempClient = new InterfaceClient(accessKey, secretKey);
+        Gson gson = new Gson();
+        com.trl.apiinterfaceclientsdk.model.User user = gson.fromJson(userRequestParams, com.trl.apiinterfaceclientsdk.model.User.class);
+        String usernameByPost = tempClient.getUsernameByPost(user);
+        return ResultUtils.success(usernameByPost);
 
     }
 
