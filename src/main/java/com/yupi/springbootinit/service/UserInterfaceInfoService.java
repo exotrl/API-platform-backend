@@ -25,4 +25,7 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
     Page<UserInterfaceInfoVO> getUserInterfaceInfoVOPage(Page<UserInterfaceInfo> interfaceInfoPage, HttpServletRequest request);
 
     QueryWrapper<UserInterfaceInfo> getQueryWrapper(UserInterfaceInfoQueryRequest interfaceInfoQueryRequest);
+
+    boolean invokeCount(long interfaceInfoId, long userId);
+
 }

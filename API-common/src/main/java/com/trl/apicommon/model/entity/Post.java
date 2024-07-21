@@ -1,4 +1,4 @@
-package com.yupi.springbootinit.model.entity;
+package com.trl.apicommon.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
@@ -7,42 +7,49 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户调用接口关系表
- * @TableName user_interface_info
+ * 帖子
+ *
+ * @author Runlei Tian
  */
-@TableName(value ="user_interface_info")
+@TableName(value = "post")
 @Data
-public class UserInterfaceInfo implements Serializable {
+public class Post implements Serializable {
+
     /**
      * id
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
-     * 用户id
+     * 标题
+     */
+    private String title;
+
+    /**
+     * 内容
+     */
+    private String content;
+
+    /**
+     * 标签列表 json
+     */
+    private String tags;
+
+    /**
+     * 点赞数
+     */
+    private Integer thumbNum;
+
+    /**
+     * 收藏数
+     */
+    private Integer favourNum;
+
+    /**
+     * 创建用户 id
      */
     private Long userId;
-
-    /**
-     * 接口id
-     */
-    private Long interfaceInfoId;
-
-    /**
-     * 总调用次数
-     */
-    private Integer totalNum;
-
-    /**
-     * 剩余调用次数
-     */
-    private Integer leftNum;
-
-    /**
-     * 0-正常   1-禁用
-     */
-    private Integer status;
 
     /**
      * 创建时间

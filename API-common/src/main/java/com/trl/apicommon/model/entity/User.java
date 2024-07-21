@@ -1,4 +1,4 @@
-package com.yupi.springbootinit.model.entity;
+package com.trl.apicommon.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

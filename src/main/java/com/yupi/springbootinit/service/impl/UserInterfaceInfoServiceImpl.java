@@ -127,6 +127,11 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
                 sortField);
         return queryWrapper;
     }
+
+    @Override
+    public boolean invokeCount(long interfaceInfoId, long userId) {
+        return false;
+    }
 }
 
 
