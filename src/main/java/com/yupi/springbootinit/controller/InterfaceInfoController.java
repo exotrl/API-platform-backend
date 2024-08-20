@@ -309,7 +309,7 @@ public class InterfaceInfoController {
     /**
      * 下线接口
      *
-     * @param idRequest
+     * @param interfaceInfoInvokeRequest
      * @return
      */
     @PostMapping("/invoke")
@@ -332,6 +332,8 @@ public class InterfaceInfoController {
         User loginUser = userService.getLoginUser(request);
         String accessKey = loginUser.getAccessKey();
         String secretKey = loginUser.getSecretKey();
+        // 这里新建一个client  不能使用interfaceClient 在application.yml里面ak，sk已经写好，是管理员的。这里
+        //使用用户自己的ak  sk
         InterfaceClient tempClient = new InterfaceClient(accessKey, secretKey);
         Gson gson = new Gson();
         com.trl.apiinterfaceclientsdk.model.User user = gson.fromJson(userRequestParams, com.trl.apiinterfaceclientsdk.model.User.class);
