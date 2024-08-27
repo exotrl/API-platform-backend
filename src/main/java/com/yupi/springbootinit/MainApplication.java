@@ -1,5 +1,6 @@
 package com.yupi.springbootinit;
 
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.apache.naming.factory.BeanFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.HierarchicalBeanFactory;
@@ -22,6 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.yupi.springbootinit.mapper")
 @EnableScheduling
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
+
 public class MainApplication {
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
