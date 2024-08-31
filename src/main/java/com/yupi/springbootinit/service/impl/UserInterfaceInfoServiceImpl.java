@@ -4,24 +4,21 @@ import java.util.stream.Collectors;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yupi.springbootinit.common.ErrorCode;
 import com.yupi.springbootinit.constant.CommonConstant;
 import com.yupi.springbootinit.exception.BusinessException;
-import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.yupi.springbootinit.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
-import com.yupi.springbootinit.model.entity.InterfaceInfo;
-import com.yupi.springbootinit.model.entity.User;
-import com.yupi.springbootinit.model.entity.UserInterfaceInfo;
-import com.yupi.springbootinit.model.vo.InterfaceInfoVO;
-import com.yupi.springbootinit.model.vo.UserInterfaceInfoVO;
+import com.trl.apicommon.model.entity.User;
+import com.trl.apicommon.model.entity.UserInterfaceInfo;
+import com.trl.apicommon.model.vo.UserInterfaceInfoVO;
 import com.yupi.springbootinit.service.UserInterfaceInfoService;
 import com.yupi.springbootinit.mapper.UserInterfaceInfoMapper;
 import com.yupi.springbootinit.service.UserService;
 import com.yupi.springbootinit.utils.SqlUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -130,7 +127,16 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
 
     @Override
     public boolean invokeCount(long interfaceInfoId, long userId) {
-        return false;
+        if (interfaceInfoId <= 0 || userId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        UpdateWrapper<UserInterfaceInfo> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("interfaceInfoId", interfaceInfoId);
+        updateWrapper.eq("userId", userId);
+
+//        updateWrapper.gt("leftNum", 0);
+        updateWrapper.setSql("leftNum = leftNum - 1, totalNum = totalNum + 1");
+        return this.update(updateWrapper);
     }
 }
 

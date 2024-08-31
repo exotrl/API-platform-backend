@@ -99,8 +99,8 @@
             <version>0.0.1</version>
         </dependency>
         <dependency>
-            <groupId>org.trl</groupId>
-            <artifactId>API-common</artifactId>
+            <groupId>com.trl</groupId>
+            <artifactId>api-common</artifactId>
             <version>0.0.1</version>
         </dependency>
 

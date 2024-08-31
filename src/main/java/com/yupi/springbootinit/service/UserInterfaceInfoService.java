@@ -2,13 +2,10 @@ package com.yupi.springbootinit.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.yupi.springbootinit.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequest;
-import com.yupi.springbootinit.model.entity.InterfaceInfo;
-import com.yupi.springbootinit.model.entity.UserInterfaceInfo;
+import com.trl.apicommon.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yupi.springbootinit.model.vo.InterfaceInfoVO;
-import com.yupi.springbootinit.model.vo.UserInterfaceInfoVO;
+import com.trl.apicommon.model.vo.UserInterfaceInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
 

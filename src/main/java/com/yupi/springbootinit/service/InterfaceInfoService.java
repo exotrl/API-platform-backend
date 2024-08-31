@@ -7,9 +7,9 @@ import com.yupi.springbootinit.common.ErrorCode;
 import com.yupi.springbootinit.exception.BusinessException;
 import com.yupi.springbootinit.exception.ThrowUtils;
 import com.yupi.springbootinit.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
-import com.yupi.springbootinit.model.entity.InterfaceInfo;
+import com.trl.apicommon.model.entity.InterfaceInfo;
 import com.yupi.springbootinit.model.entity.Post;
-import com.yupi.springbootinit.model.vo.InterfaceInfoVO;
+import com.trl.apicommon.model.vo.InterfaceInfoVO;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;

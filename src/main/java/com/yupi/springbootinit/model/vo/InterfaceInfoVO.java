@@ -4,7 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.yupi.springbootinit.model.entity.InterfaceInfo;
+import com.trl.apicommon.model.entity.InterfaceInfo;
 import com.yupi.springbootinit.model.entity.Post;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

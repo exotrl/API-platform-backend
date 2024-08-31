@@ -1,4 +1,4 @@
-package com.yupi.springbootinit.service.impl;
+package com.yupi.springbootinit.service.impl.inner;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trl.apicommon.model.entity.User;
@@ -9,9 +9,11 @@ import com.yupi.springbootinit.exception.BusinessException;
 import com.yupi.springbootinit.mapper.UserMapper;
 import com.yupi.springbootinit.service.UserInterfaceInfoService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;
 
+@DubboService
 public class InnerUserServiceImpl implements InnerUserService {
 
     @Resource
@@ -23,7 +25,6 @@ public class InnerUserServiceImpl implements InnerUserService {
         }
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.eq("accessKey", accessKey);
-        //return userMapper.selectOne(userQueryWrapper);
-        return new User();
+        return userMapper.selectOne(userQueryWrapper);
     }
 }

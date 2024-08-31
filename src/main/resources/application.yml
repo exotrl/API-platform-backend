@@ -102,6 +102,7 @@ knife4j:
         api-rule-resources:
           - com.yupi.springbootinit.controller
 
+#这里的ak   sk用于测试，实际从数据库中获得
 api:
   client:
     access-key: trl

@@ -2,7 +2,6 @@ package com.yupi.springbootinit.model.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.yupi.springbootinit.model.entity.InterfaceInfo;
 import com.yupi.springbootinit.model.entity.UserInterfaceInfo;
 import org.springframework.beans.BeanUtils;
 
