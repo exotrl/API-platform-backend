@@ -46,7 +46,7 @@ public class InterfaceClient {
     public Map<String, String> getHeader(String body){
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("accessKey", accessKey);
-//        hashMap.put("secretKey", secretKey);  不能发送
+//        hashMap.put("secretKey", secretKeyÏ);  不能发送
         hashMap.put("nonce", RandomUtil.randomNumbers(4));
         hashMap.put("body", body);
         hashMap.put("timestamp", String.valueOf(System.currentTimeMillis() / 1000));

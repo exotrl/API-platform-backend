@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -25,6 +26,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 
 public class MainApplication {
+    ClassPathXmlApplicationContext
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
     }

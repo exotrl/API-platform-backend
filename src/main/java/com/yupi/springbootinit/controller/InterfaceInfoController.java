@@ -3,7 +3,7 @@ package com.yupi.springbootinit.controller;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
-import com.trl.apiinterfaceclientsdk.client.InterfaceClient;
+import com.yupi.apiinterfaceclientsdk.client.InterfaceClient;
 import com.yupi.springbootinit.annotation.AuthCheck;
 import com.yupi.springbootinit.common.*;
 import com.yupi.springbootinit.constant.UserConstant;
@@ -280,7 +280,7 @@ public class InterfaceInfoController {
     }
 
     /**
-     * 下线接口
+     * 调用接口
      *
      * @param idRequest
      * @return
